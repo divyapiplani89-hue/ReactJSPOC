@@ -1,0 +1,130 @@
+.dashboard-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: beige;
+}
+
+.dashboard-card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 900px;
+    text-align: center;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.button-group button {
+    width: auto;
+    flex: none;
+}
+
+.dashboard-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.dashboard-table th,
+.dashboard-table td {
+    border: 1px solid white;
+    padding: 10px;
+    text-align: center;
+}
+
+.dashboard-table th {
+    background: grey;
+    color: white;
+}
+
+.dashboard-table tr:nth-child(even) {
+    background: white;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+      background: rgba(0,0,0,0.5);
+}
+
+.popup-box {
+    background: white;
+    width: 350px;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.popup-box input,
+.popup-box select {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+
+    box-sizing: border-box;
+}
+
+
+.popup-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+
+.popup-buttons button {
+    width: auto;
+    padding: 8px 20px;
+}
+
+.profile-details {
+    margin: 25px auto;
+    width: 60%;
+}
+
+
+.profile-row {
+    display: flex;
+    justify-content: space-between;
+
+     background: white;
+
+    padding: 15px;
+
+    margin: 10px 0;
+
+    border-radius: 8px;
+}
+
+
+.profile-row b {
+   color: gray;
+}

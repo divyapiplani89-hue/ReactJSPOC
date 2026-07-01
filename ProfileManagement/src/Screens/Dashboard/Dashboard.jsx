@@ -111,7 +111,9 @@ const Dashboard = () => {
               Add User
             </button>
           )}
-          <button onClick={logOut}>Logout</button>
+          <div className="logout-button">
+            <button onClick={logOut}>Logout</button>
+          </div>
         </div>
         <table className="dashboard-table">
           <thead>
@@ -167,14 +169,16 @@ const Dashboard = () => {
                           Edit
                         </button>
 
-                        <button
-                          onClick={() => {
-                            setSelectedUser(user);
-                            setShowDeletePopup(true);
-                          }}
-                        >
-                          Delete
-                        </button>
+                        {loggedInUser.role === "Admin" && (
+                          <button
+                            onClick={() => {
+                              setSelectedUser(user);
+                              setShowDeletePopup(true);
+                            }}
+                          >
+                            Delete
+                          </button>
+                        )}
                       </div>
                     </td>
                   )}

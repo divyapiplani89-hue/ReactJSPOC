@@ -104,4 +104,6 @@
     width: auto;
     padding: 8px 20px;
 }
-
+.logout-button {
+    margin-left: auto;
+}

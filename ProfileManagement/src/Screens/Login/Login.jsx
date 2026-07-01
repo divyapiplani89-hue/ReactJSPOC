@@ -10,8 +10,8 @@ const Login = () => {
 
     const navigate = useNavigate()
 
-   useEffect(()=>{localStorage.removeItem("loggedInUser")},[])
- 
+    useEffect(() => { localStorage.removeItem("loggedInUser") }, [])
+
 
     const handleLogin = (e) => {
         e.preventDefault()
@@ -38,6 +38,8 @@ const Login = () => {
             navigate('/dashboard')
         } else {
             setError("Invalid username or password")
+            setUsername("");
+            setPassword("");
         }
 
 

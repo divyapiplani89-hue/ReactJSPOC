@@ -30,15 +30,16 @@ const DeleteModal = ({
 
         <div className="popup-buttons">
 
+          <button onClick={onClose}>
+            Cancel
+          </button>
 
           <button onClick={onConfirm}>
             Yes
           </button>
 
 
-          <button onClick={onClose}>
-            Cancel
-          </button>
+
 
 
         </div>

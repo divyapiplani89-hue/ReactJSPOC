@@ -1,44 +1,23 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Login from './Login'
-import Dashboard from './Dashboard'
-import Profile from './Profile'
-import ProtectedRoute from './ProtectedRoute'
+import Login from './Screens/Login/Login'
+import Dashboard from './Screens/Dashboard/Dashboard'
+import Profile from './Screens/Profile/Profile'
+import ProtectedRoute from './Route/ProtectedRoute'
+import { mockUsers } from './mock'
+
+
+
 
 const App = () => {
 
   useEffect(() => {
 
     const existinUser = JSON.parse(localStorage.getItem("users"))
-    if (!existinUser || existinUser.length === 0) {
-      const users = [
-        {
-          id: 1,
-          username: "Admin",
-          password: "admin@123",
-          role: "Admin",
-          email: "admin@tcs.com"
-        },
-        {
-          id: 2,
-          username: "Editor",
-          password: "editor@123",
-          role: "Editor",
-          email: "editor@tcs.com"
-        },
-        {
-          id: 3,
-          username: "Viewer",
-          password: "viewer@123",
-          role: "Viewer",
-          email: "viewer@tcs.com"
-        },
-
-      ]
-
-      localStorage.setItem("users", JSON.stringify(users));
-    }
+     if (!existinUser || existinUser.length === 0) {
+    localStorage.setItem("users", JSON.stringify(mockUsers));
+  }
   }, [])
 
 

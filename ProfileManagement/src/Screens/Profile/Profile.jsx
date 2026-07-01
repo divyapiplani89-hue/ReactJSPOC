@@ -1,6 +1,6 @@
 import React from "react"
 import { useLocation, useNavigate } from "react-router-dom"
-import "./Dashboard.css"
+import "./Profile.css"
 
 const Profile = () => {
 
@@ -93,9 +93,21 @@ const Profile = () => {
 
         </div>
 
+        <div style={{ marginTop: "30px" }}>
+          <h3>Demo Video</h3>
+
+          <iframe
+            width="500"
+            height="280"
+            src="https://www.youtube.com/embed/aqz-KE-bpKQ"
+            title="Demo Video"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          ></iframe>
+        </div>
 
 
-       
 
       </div>
 

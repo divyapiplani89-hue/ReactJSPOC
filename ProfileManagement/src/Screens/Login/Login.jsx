@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./Login.css"
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -9,6 +9,9 @@ const Login = () => {
     const [error, setError] = useState("")
 
     const navigate = useNavigate()
+
+   useEffect(()=>{localStorage.removeItem("loggedInUser")},[])
+ 
 
     const handleLogin = (e) => {
         e.preventDefault()
@@ -78,9 +81,6 @@ const Login = () => {
 
 
             </div>
-
-
-
 
         </div>
     )

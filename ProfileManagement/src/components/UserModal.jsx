@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-const EditUserModal = ({ show, onClose, onSave, selectedUser }) => {
+const UserModal = ({
+  show,
+  onClose,
+  onSave,
+  selectedUser,
+  mode
+}) => {
 
   const [user, setUser] = useState({
     username: "",
@@ -11,15 +17,25 @@ const EditUserModal = ({ show, onClose, onSave, selectedUser }) => {
 
   useEffect(() => {
 
-    if (selectedUser) {
+    if (mode === "edit" && selectedUser) {
+
       setUser({
         username: selectedUser.username,
         email: selectedUser.email,
         role: selectedUser.role
       });
+
+    } else {
+
+      setUser({
+        username: "",
+        email: "",
+        role: ""
+      });
+
     }
 
-  }, [selectedUser])
+  }, [mode, selectedUser]);
 
 
   if (!show) {
@@ -30,21 +46,28 @@ const EditUserModal = ({ show, onClose, onSave, selectedUser }) => {
   const handleSave = () => {
 
     if (
-      !user.username ||
-      !user.email ||
-      !user.role
+        !user.username ||
+        !user.email ||
+        !user.role
     ) {
-      alert("Please fill all fields");
-      return;
+        alert("Please fill all fields");
+        return;
     }
 
+    if (mode === "add") {
 
-    onSave({
-      ...selectedUser,
-      ...user
-    });
+        onSave(user);
 
-  };
+    } else {
+
+        onSave({
+            ...selectedUser,
+            ...user
+        });
+
+    }
+
+};
 
 
   return (
@@ -53,7 +76,8 @@ const EditUserModal = ({ show, onClose, onSave, selectedUser }) => {
 
       <div className="popup-box">
 
-        <h2>Edit User</h2>
+        <h2>
+          {mode === "add" ? "Add User" : "Edit User"}</h2>
 
 
         <input
@@ -113,13 +137,15 @@ const EditUserModal = ({ show, onClose, onSave, selectedUser }) => {
 
         <div className="popup-buttons">
 
-          <button onClick={handleSave}>
-            Update
-          </button>
+
 
 
           <button onClick={onClose}>
             Cancel
+          </button>
+
+          <button onClick={handleSave}>
+            {mode === "add" ? "Save" : "Update"}
           </button>
 
         </div>
@@ -133,4 +159,4 @@ const EditUserModal = ({ show, onClose, onSave, selectedUser }) => {
 };
 
 
-export default EditUserModal;
+export default UserModal;

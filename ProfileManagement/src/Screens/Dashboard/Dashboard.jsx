@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import "./Dashboard.css";
-import AddUserModal from './components/AddUserModal'
-import EditUserModal from './components/EditUserModal'
-import DeleteModal from './components/DeleteModal'
+import "./Dashboard.css"
+import UserModal from '../../components/UserModal'
+import DeleteModal from '../../components/DeleteModal'
 
 const Dashboard = () => {
 
@@ -96,6 +95,10 @@ const Dashboard = () => {
     window.location.reload()
   }
 
+  if (!loggedInUser.username) {
+    logOut()
+  }
+
   return (
     <div className="dashboard-container">
       <div className="dashboard-card">
@@ -122,87 +125,79 @@ const Dashboard = () => {
 
             </tr>
           </thead>
-
           <tbody>
-            {users.map((user, index) => (
-              <tr key={user.id}>
-                <td>
-                  <span
-                    style={{
-                      color: "blue",
-                      cursor: "pointer"
-                    }}
-
-                    onClick={() =>
-                      navigate("/profile", {
-                        state: { user }
-                      })
-                    }
-
-                  >
-                    {user.username}
-                  </span>
-
+            {users.length === 0 ? (
+              <tr>
+                <td
+                  colSpan="4"
+                  style={{
+                    textAlign: "center",
+                    padding: "20px",
+                    color: "gray"
+                  }}
+                >
+                  No users available
                 </td>
-                <td>{user.email}</td>
-                <td>{user.role}</td>
-                {loggedInUser.role !== "Viewer" && (
-
+              </tr>
+            ) : (
+              users.map((user) => (
+                <tr key={user.id}>
                   <td>
-
-                    <div className="action-buttons">
-
-                      <button
-                        onClick={() => {
-                          setSelectedUser(user);
-                          setShowEditPopup(true);
-                        }}
-                      >
-                        Edit
-                      </button>
-
-
-                      <button
-                        onClick={() => {
-                          setSelectedUser(user);
-                          setShowDeletePopup(true);
-                        }}
-                      >
-                        Delete
-                      </button>
-
-                    </div>
-
+                    <span
+                      style={{ color: "blue", cursor: "pointer" }}
+                      onClick={() =>
+                        navigate("/profile", { state: { user } })
+                      }
+                    >
+                      {user.username}
+                    </span>
                   </td>
+                  <td>{user.email}</td>
+                  <td>{user.role}</td>
 
-                )}
+                  {loggedInUser.role !== "Viewer" && (
+                    <td>
+                      <div className="action-buttons">
+                        <button
+                          onClick={() => {
+                            setSelectedUser(user);
+                            setShowEditPopup(true);
+                          }}
+                        >
+                          Edit
+                        </button>
 
-
-
-              </tr>))}
+                        <button
+                          onClick={() => {
+                            setSelectedUser(user);
+                            setShowDeletePopup(true);
+                          }}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </td>
+                  )}
+                </tr>
+              ))
+            )}
           </tbody>
+
         </table>
       </div>
-      <AddUserModal
-
+      <UserModal
+        mode="add"
         show={showAddPopup}
-
         onClose={() => setShowAddPopup(false)}
-
         onSave={addUser}
-
       />
 
-      <EditUserModal
-
+      <UserModal
+        mode="edit"
         show={showEditPopup}
-
         selectedUser={selectedUser}
-
         onClose={() => setShowEditPopup(false)}
-
         onSave={updateUser}
-
       />
 
       <DeleteModal

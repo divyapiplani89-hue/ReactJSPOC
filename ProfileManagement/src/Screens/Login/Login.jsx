@@ -38,8 +38,7 @@ const Login = () => {
             navigate('/dashboard')
         } else {
             setError("Invalid username or password")
-            setUsername("");
-            setPassword("");
+           
         }
 
 
